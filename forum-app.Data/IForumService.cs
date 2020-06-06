@@ -9,7 +9,7 @@ namespace forum_app.Data
 {
     // The ppurpose to define the behaviour of the ForumService or
     // ANy type of service that might want to interact with the forum data in the DB
-    public interface IForum
+    public interface IForumService
     {
         Forum GetId(int id);
         IEnumerable<Forum> GetAll();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace forum_app.Service
 {
     // Query DB for data and serve to the web project
-    public class ForumService : IForum
+    public class ForumService : IForumService
     {
         private readonly ApplicationDbContext _ctx;
 
