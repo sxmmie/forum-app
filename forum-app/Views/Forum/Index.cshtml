@@ -1,0 +1,19 @@
+﻿@model forum_app.Models.ForumViewModel.ForumIndexModel
+
+<h2>Forums</h2>
+
+<table class="table table-hover" id="forumIndexTable">
+    <tbody>
+        @foreach(var forum in Model.ForumListing)
+        {
+            <tr>
+                <td>
+                    @forum.Name
+                </td>
+                <td>
+                    @forum.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
