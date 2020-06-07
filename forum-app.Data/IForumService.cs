@@ -11,7 +11,7 @@ namespace forum_app.Data
     // ANy type of service that might want to interact with the forum data in the DB
     public interface IForumService
     {
-        Forum GetId(int id);
+        Forum GetById(int id);
         IEnumerable<Forum> GetAll();
         IEnumerable<ApplicationUser> GetAllActiveUsers();
 

@@ -39,9 +39,14 @@ namespace forum_app.Service
             throw new NotImplementedException();
         }
 
-        public Forum GetId(int id)
+        public Forum GetById(int id)
         {
-            throw new NotImplementedException();
+            var forum = _ctx.Forums.Where(f => f.Id == id)
+                .Include(p => p.Posts).ThenInclude(f => f.User)
+                .Include(p => p.Posts).ThenInclude(f => f.Replies).ThenInclude(p => p.User)
+                .FirstOrDefault();
+
+            return forum;
         }
 
         public Task UpdateForumDescription(int forumId, string newDescription)

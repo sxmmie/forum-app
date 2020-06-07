@@ -12,6 +12,7 @@ using forum_app.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using forum_app.Service;
 
 namespace forum_app
 {
@@ -32,6 +33,7 @@ namespace forum_app
                     Configuration.GetConnectionString("DefaultConnection")));   // look inside the appsetting and grab the node that has the name DefaultConnection
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IForumService, ForumService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
