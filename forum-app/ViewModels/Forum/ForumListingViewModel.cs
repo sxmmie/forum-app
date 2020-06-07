@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace forum_app.Models.ForumViewModel
+namespace forum_app.ViewModels.Forum
 {
     public class ForumListingViewModel
     {
