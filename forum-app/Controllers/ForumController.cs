@@ -1,4 +1,6 @@
 ﻿using forum_app.Data;
+using forum_app.Data.Models;
+using forum_app.Service;
 using forum_app.ViewModels.Forum;
 using forum_app.ViewModels.Post;
 using Microsoft.AspNetCore.Mvc;
@@ -43,18 +45,50 @@ namespace forum_app.Controllers
 
         public IActionResult Topic(int id)
         {
-            var forum = _forumService.GetById(id);
+            var forum = _forumService.GetById(id);  // grab a frum that matches the id passed
 
-            // retrieve some postd from the DB that corresponds to this(forum) particular forum
-            var posts = _postService.GetFilteredPosts(id);
+            // retrieve post from the DB that corresponds to this(forum-> id) particular forum
+            /*var posts = _postService.GetPostsByForum(id);*/
+            var posts = forum.Posts;
 
             // collection of posts
-            var postListing = new PostListingViewModel
+            var postListing = posts.Select(post => new PostListingViewModel
             {
+                Id = post.Id,
+                AuthorId = post.User.Id,
+                AuthorRating = post.User.Rating,
+                Title = post.Title,
+                DatePosted = post.Created.ToString(),
+                RepliesCount = post.Replies.Count(),
+                Forum = BuildForumListing(post),
+            });
 
+            var model = new ForumTopicModel
+            {
+                Posts = postListing,
+                Forum = BuildForumListing(forum)
             };
 
-            return View();
+            return View(model);
+        }
+
+        private ForumListingViewModel BuildForumListing(Forum forum)
+        {
+            return new ForumListingViewModel
+            {
+                Id = forum.Id,
+                Name = forum.Title,
+                Description = forum.Description,
+                ImageUrl = forum.ImageUrl
+            };
+        }
+
+        // Build out a ForumListing module frm the post
+        private ForumListingViewModel BuildForumListing(Post post)
+        {
+            var forum = post.Forum;
+
+            return BuildForumListing(forum);
         }
     }
 }

@@ -10,6 +10,13 @@ namespace forum_app.Service
 {
     public class PostService : IPostService
     {
+        private readonly ApplicationDbContext _ctx;
+
+        public PostService(ApplicationDbContext ctx)
+        {
+            _ctx = ctx;
+        }
+
         public Task Add(Post post)
         {
             throw new NotImplementedException();
@@ -38,6 +45,11 @@ namespace forum_app.Service
         public IEnumerable<Post> GetFilteredPost(string searchQuery)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetPostsByForum(int id)
+        {
+            return _ctx.Forums.Where(x => x.Id == id).First().Posts;
         }
     }
 }
