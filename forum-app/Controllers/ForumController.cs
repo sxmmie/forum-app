@@ -37,5 +37,10 @@ namespace forum_app.Controllers
 
             return View(forums);
         }
+
+        public IActionResult Topic(int id)
+        {
+            return _forumService.GetById(id);
+        }
     }
 }
