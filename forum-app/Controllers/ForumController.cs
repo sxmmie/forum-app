@@ -1,6 +1,5 @@
 ﻿using forum_app.Data;
 using forum_app.Data.Models;
-using forum_app.Service;
 using forum_app.ViewModels.Forum;
 using forum_app.ViewModels.Post;
 using Microsoft.AspNetCore.Mvc;
