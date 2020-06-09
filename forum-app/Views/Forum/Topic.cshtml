@@ -1,0 +1,41 @@
+﻿@model forum_app.ViewModels.Forum.ForumTopicModel
+
+<h1>Welcome to @Model.Forum.Name Forum!</h1>
+
+@if (Model.Posts.Any())
+{
+    <table class="table table-bordered table-hover">
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">
+                            @post.Title
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@post.Author</td>
+                </tr>
+                <tr>
+                    <td>@post.DatePosted</td>
+                </tr>
+                <tr>
+                    <td>@post.RepliesCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="noPosts">
+        <h3>There are no @Model.Forum.Name post yet! <br />
+            Why not
+            <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id"></a>
+            <span>Create</span>
+            one?
+        </h3>
+    </div>
+}
