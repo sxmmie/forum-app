@@ -1,5 +1,6 @@
 ﻿using forum_app.Data;
 using forum_app.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,18 @@ namespace forum_app.Service
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Return a single post, including the postUser, postForum, postReplies
+        /// </summary>
+        /// <param name="id">The post id</param>
+        /// <returns></returns>
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ctx.Posts.Where(post => post.Id == id)
+                .Include(post => post.User)
+                .Include(post => post.Replies).ThenInclude(replies => replies.User)
+                .Include(post => post.Forum)
+                .First();
         }
 
         public IEnumerable<Post> GetFilteredPost(string searchQuery)
