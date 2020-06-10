@@ -14,7 +14,7 @@ namespace forum_app.Data.Models
         public DateTime Created { get; set; }
 
         // Navigation property
-        public virtual ApplicationUser User { get; set; }   // Who wrote the post
+        public virtual ApplicationUser User { get; set; }   // Who wrote the post, navigation property 
         public virtual Forum Forum { get; set; }  // Each post related and posted to a particular forum
         public virtual IEnumerable<PostReply> Replies { get; set; }  // Associate a series of replies to each post
     }
