@@ -18,5 +18,6 @@ namespace forum_app.Data
         Task Delete(int id);
         Task EditPost(int id, string newContent);
         //Task AddReply(PostReply reply);
+        IEnumerable<Post> GetLatestPosts(int numberOfPosts);
     }
 }
