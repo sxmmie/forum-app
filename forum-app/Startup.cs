@@ -39,7 +39,9 @@ namespace forum_app
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddScoped<IPostService, PostService>();
             services.AddScoped<IForumService, ForumService>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

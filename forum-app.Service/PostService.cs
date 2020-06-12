@@ -35,7 +35,10 @@ namespace forum_app.Service
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return _ctx.Posts
+                .Include(post => post.User)
+                .Include(post => post.Replies).ThenInclude(replies => replies.User)
+                .Include(post => post.Forum);
         }
 
         /// <summary>
