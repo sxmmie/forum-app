@@ -38,7 +38,9 @@
                                     <span>@post.RepliesCount Replies</span>
                                 }
                                 <span class="postUser">
-                                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.Author"></a>
+                                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.Author">
+                                        @post.Author
+                                    </a>
                                 </span>
                             </div>
                         </td>
